@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Brnbio\LaravelExtended;
 
-use Brnbio\LaravelExtended\Console\MakeViewCommand;
+use Brnbio\LaravelExtended\Console\Commands\MakeRouteCommand;
+use Brnbio\LaravelExtended\Console\Commands\MakeViewCommand;
 use Illuminate\Support\ServiceProvider;
 
 /**
@@ -21,6 +22,7 @@ class ExtendedServiceProvider extends ServiceProvider
     {
         $this->commands([
             MakeViewCommand::class,
+            MakeRouteCommand::class,
         ]);
     }
 

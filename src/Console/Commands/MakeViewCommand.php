@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Brnbio\LaravelExtended\Console;
+namespace Brnbio\LaravelExtended\Console\Commands;
 
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Console\GeneratorCommand;
@@ -11,7 +11,7 @@ use Symfony\Component\Console\Input\InputOption;
 /**
  * Class MakeViewCommand
  *
- * @package Brnbio\LaravelExtended\Console
+ * @package Brnbio\LaravelExtended\Console\Commands
  */
 class MakeViewCommand extends GeneratorCommand
 {
