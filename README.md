@@ -91,7 +91,7 @@ Make sure, that you add App\Http\Controllers as usage in your routes file.
 ```php
 // file: routes/web.php
 
-use App\Http\Controller;
+use App\Http\Controllers;
 
 ...
 ```
