@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace Brnbio\LaravelExtended;
 
+use Brnbio\LaravelExtended\Console\Commands\MakeControllerCommand;
 use Brnbio\LaravelExtended\Console\Commands\MakeRouteCommand;
 use Brnbio\LaravelExtended\Console\Commands\MakeViewCommand;
+use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\ServiceProvider;
 
 /**
@@ -23,6 +25,7 @@ class ExtendedServiceProvider extends ServiceProvider
         $this->commands([
             MakeViewCommand::class,
             MakeRouteCommand::class,
+            MakeControllerCommand::class,
         ]);
     }
 
@@ -31,6 +34,18 @@ class ExtendedServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->app->extend('command.controller.make', function () {
+            return new MakeControllerCommand(new Filesystem());
+        });
+    }
+
+    /**
+     * @return string[]
+     */
+    public function provides(): array
+    {
+        return [
+            'command.controller.make',
+        ];
     }
 }
