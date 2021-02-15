@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Brnbio\LaravelExtended\Console\Commands;
 
 use Illuminate\Routing\Console\ControllerMakeCommand as Command;
+use Illuminate\Support\Str;
 use Symfony\Component\Console\Input\InputOption;
 
 /**
@@ -40,5 +41,21 @@ class MakeControllerCommand extends Command
         }
 
         return parent::getStub();
+    }
+
+    /**
+     * @param array $replace
+     * @return array
+     */
+    protected function buildModelReplacements(array $replace): array
+    {
+        $replace = parent::buildModelReplacements($replace);
+
+        $modelClass = $this->parseModel($this->option('model'));
+        if (class_exists($modelClass)) {
+            $replace['{{ modelVariablePlural }}'] = Str::of(class_basename($modelClass))->plural()->lower();
+        }
+
+        return $replace;
     }
 }
