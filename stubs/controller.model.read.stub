@@ -1,0 +1,36 @@
+<?php
+
+declare(strict_types=1);
+
+namespace {{ namespace }};
+
+use {{ namespacedModel }};
+use {{ rootNamespace }}Http\Controllers\Controller;
+use Illuminate\Contracts\Support\Renderable;
+
+/**
+ * Class ReadController
+ *
+ * @package {{ namespace }}
+ */
+class ReadController extends Controller
+{
+    /**
+     * @return Renderable
+     */
+    public function __invoke(): Renderable
+    {
+        ${{ modelVariablePlural }} = {{ model }}::query()->paginate();
+
+        return view('{{ modelVariablePlural }}.index', compact('{{ modelVariablePlural }}'));
+    }
+
+    /**
+     * @param {{ model }} ${{ modelVariable }}
+     * @return Renderable
+     */
+    public function details({{ model }} ${{ modelVariable }}): Renderable
+    {
+        return view('{{ modelVariablePlural }}.details', compact('{{ modelVariable }}'));
+    }
+}

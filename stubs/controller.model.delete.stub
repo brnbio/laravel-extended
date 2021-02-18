@@ -1,0 +1,29 @@
+<?php
+
+declare(strict_types=1);
+
+namespace {{ namespace }};
+
+use {{ namespacedModel }};
+use {{ rootNamespace }}Http\Controllers\Controller;
+use Illuminate\Http\RedirectResponse;
+
+/**
+ * Class DeleteController
+ *
+ * @package {{ namespace }}
+ */
+class DeleteController extends Controller
+{
+    /**
+     * @param {{ model }} ${{ modelVariable }}
+     * @return RedirectResponse
+     */
+    public function __invoke({{ model }} ${{ modelVariable }}): RedirectResponse
+    {
+        ${{ modelVariable }}->delete();
+        flash()->success('{{ model }} gelöscht.');
+
+        return redirect()->route('{{ modelVariablePlural }}.index');
+    }
+}

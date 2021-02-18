@@ -55,7 +55,7 @@ class MakeControllerCommand extends Command
         $modelClass = $this->parseModel($model);
         if (class_exists($modelClass)) {
             $replace['{{ modelVariablePlural }}'] = Str::of(class_basename($modelClass))->plural()->lower();
-            $replace['{{ baseNamespace }}'] = Str::of($model)->plural();
+            $replace['{{ baseNamespace }}'] = Str::of($model)->replace('/', '\\')->plural();
         }
 
         return $replace;

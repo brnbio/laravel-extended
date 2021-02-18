@@ -1,0 +1,41 @@
+<?php
+
+declare(strict_types=1);
+
+namespace {{ namespace }};
+
+use {{ namespacedModel }};
+use {{ rootNamespace }}Http\Controllers\Controller;
+use {{ rootNamespace }}Http\Requests\{{ baseNamespace }}\StoreRequest;
+use Illuminate\Contracts\Support\Renderable;
+use Illuminate\Http\RedirectResponse;
+
+/**
+ * Class CreateController
+ *
+ * @package {{ namespace }}
+ */
+class CreateController extends Controller
+{
+    /**
+     * @return Renderable
+     */
+    public function __invoke(): Renderable
+    {
+        ${{ modelVariable }} = new {{ model }}();
+
+        return view('{{ modelVariablePlural }}.create', compact('{{ modelVariable }}'));
+    }
+
+    /**
+     * @param StoreRequest $request
+     * @return RedirectResponse
+     */
+    public function store(StoreRequest $request): RedirectResponse
+    {
+        {{ model }}::create($request->validated());
+        flash()->success('{{ model }} gespeichert.');
+
+        return redirect()->route('{{ modelVariablePlural }}.index');
+    }
+}

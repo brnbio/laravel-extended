@@ -1,0 +1,41 @@
+<?php
+
+declare(strict_types=1);
+
+namespace {{ namespace }};
+
+use {{ namespacedModel }};
+use {{ rootNamespace }}Http\Controllers\Controller;
+use {{ rootNamespace }}Http\Requests\{{ baseNamespace }}\StoreRequest;
+use Illuminate\Contracts\Support\Renderable;
+use Illuminate\Http\RedirectResponse;
+
+/**
+ * Class UpdateController
+ *
+ * @package {{ namespace }}
+ */
+class UpdateController extends Controller
+{
+    /**
+     * @param {{ model }} ${{ modelVariable }}
+     * @return Renderable
+     */
+    public function __invoke({{ model }} ${{ modelVariable }}): Renderable
+    {
+        return view('{{ modelVariablePlural }}.update', compact('{{ modelVariable }}'));
+    }
+
+    /**
+     * @param StoreRequest $request
+     * @param {{ model }} ${{ modelVariable }}
+     * @return RedirectResponse
+     */
+    public function store(StoreRequest $request, {{ model }} ${{ modelVariable }}): RedirectResponse
+    {
+        {{ model }}::update($request->validated());
+        flash()->success('{{ model }} gespeichert.');
+
+        return redirect()->route('{{ modelVariablePlural }}.details', ${{ modelVariable }});
+    }
+}

@@ -33,6 +33,7 @@ class MakeRouteCommand extends Command
     {
         $route = $this->_generateRoute();
         $this->_addRouteToRouteFile($route);
+        $this->info('Route created successfully.', 'success');
 
         return 0;
     }

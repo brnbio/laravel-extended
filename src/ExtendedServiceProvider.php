@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Brnbio\LaravelExtended;
 
 use Brnbio\LaravelExtended\Console\Commands\MakeControllerCommand;
+use Brnbio\LaravelExtended\Console\Commands\MakeCrudCommand;
 use Brnbio\LaravelExtended\Console\Commands\MakeRouteCommand;
 use Brnbio\LaravelExtended\Console\Commands\MakeViewCommand;
 use Illuminate\Filesystem\Filesystem;
@@ -26,7 +27,10 @@ class ExtendedServiceProvider extends ServiceProvider
             MakeViewCommand::class,
             MakeRouteCommand::class,
             MakeControllerCommand::class,
+            MakeCrudCommand::class,
         ]);
+
+        $this->publishes([__DIR__ . '/../stubs' => base_path('stubs/')]);
     }
 
     /**
