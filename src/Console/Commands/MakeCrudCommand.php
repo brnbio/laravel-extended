@@ -71,7 +71,7 @@ class MakeCrudCommand extends Command
     {
         $this->call('make:migration', ['name' => 'Create' . $this->namespace->replace('/', '') . 'Table']);
         $this->call('make:model', [
-            'name'      => $this->model,
+            'name'      => $this->model->__toString(),
             '--factory' => true,
             '--seed'    => true,
         ]);
